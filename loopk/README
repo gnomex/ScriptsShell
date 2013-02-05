@@ -1,0 +1,6 @@
+Script bash Shell para controle do dispositivo WatchDog
+
+Funcionamento
+
+Envia caracter "K" para dispositivo de 2 em 2 segundos
+Caso falhe o envio do caracter "K" é recebido como erro a string "Teste"
