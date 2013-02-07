@@ -3,8 +3,11 @@
 #	Writing nothing on a file
 #
 
+#arraysize="${#NUMOFJOBS[@]}"	#length of array
+#NUMOFJOBS[arraysize]="$$" #inicializando array
+#echo "PID: ${NUMOFJOBS[@]}"
+
 FILE='writer'
-NUMOFJOBS=1
 
 function writeLOL () {
 	
@@ -15,41 +18,74 @@ function writeLOL () {
 		for i in $(seq 1 5)
 		do	
 			sleep "$SLEEPTIME"
-			echo "My PID $$"
 			echo "Counter: $i and Sleep $SLEEPTIME"
-			echo "JOBS: $NUMOFJOBS"
 		done
 	done
 	
 } >> "$FILE"
 
+
+function __SIGKILL {
+	
+	local arraysize="${#NUMOFJOBS[@]}"
+	#Kill jobs
+	for ((i=0;i<"$arraysize";i++)) ;
+	do
+		echo "Killing job PID: ${NUMOFJOBS[$i]}"
+		kill -9 "${NUMOFJOBS[$i]}" ;
+	done
+
+	killall -9 "$(basename $0)"
+
+}
+
+function addJOBID ()	{
+
+	local arraysize="${#NUMOFJOBS[@]}"	#length of array
+	NUMOFJOBS[arraysize]="$1"	#add the arg on array
+	echo "Job listed: $1"
+
+}
+
+
 function troll {
-	#set -x
+
+	set -m
+	set -b
+
 	local SleeperTiming=1
 	while true ; do
-		if test "$NUMOFJOBS" -lt 20 ; then #Limit of jobs, remove conditional to be happy
+		if test "${#NUMOFJOBS[@]}" -lt 5 ; then #Limit of jobs, remove conditional to be happy
+			
 			writeLOL "$SleeperTiming" &
-			echo "$!"
-			NUMOFJOBS=$((NUMOFJOBS+1))
+			addJOBID "$!"
+
 			SleeperTiming=$((SleeperTiming+1))
-			sleep 1.5
+			sleep "$SleeperTiming"
+
 			writeLOL "$SleeperTiming" &
-			echo "$!"
+			addJOBID "$!"
+
 			SleeperTiming=$((SleeperTiming+1))
-			NUMOFJOBS=$((NUMOFJOBS+1))
+			
 			echo 'Writing on a file'
 			echo 'Trolling you'
-			troll &
-			echo "New Job: $!"
-			NUMOFJOBS=$((NUMOFJOBS+1))
+			echo "Num of active jobs: ${#NUMOFJOBS[@]}"
+			sleep "$SleeperTiming"
+
+			#troll &
+			#addJOBID "$!"
+
 		else
-			echo 'Limit Exceeded of Jobs, Killing AlL' #>> "$FILE"
-			killall -9 $(basename $0)
+			echo 'Limit Exceeded of Jobs, Killing AlL'
+			echo "${NUMOFJOBS[@]}"
+			return 0
 		fi
 	done
-	
+	set +m
+	set +b
 }
 
 troll
-
+__SIGKILL
 
