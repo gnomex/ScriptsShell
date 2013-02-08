@@ -6,11 +6,11 @@
 #
 ##Require root privileges
 #
-# Version 1: Send char signal to device
-# Version 2: Updating logging
-# Version 3: Dinamic time
-# Version 4: Solving bugs and refactor the code
-# Version 5: Job control
+# Version 1.1: Send char signal to device
+# Version 1.2: Updating logging
+# Version 1.3: Dinamic time
+# Version 1.4: Solving bugs and refactor the code
+# Version 2: Job control
 #
 ##
 # Author: Kenner Alan Kliemann <kenner.kliemann@itai.org.br>
@@ -27,18 +27,19 @@ LOGERRORFILE="$LOGDIR/logger.log"
 TIMEINTERVAL=2 	#Default value
 UPTIMESCRIPT="$(date +%d/%m/%Y-%H:%M:%S)"
 
-SIGINT=15
+SIGINT=15	#Default value
 
 #Functions
 
 function ShowHelp	{
 	local HELPMESSAGE="
-	USO: $(basename "$0") [-h | -V | -f <file>]
+	USO: $(basename "$0") [-h | -V | -f <file>	| -r ]
 
 	-h	Show help
 	-V	Show Version
 	-f <file>	Input file
 	-t <time [float]>	time delay, Default is 2
+	-r clear logs
 	
 	#Examples:
 		# $(basename "$0") -f /dev/ttyACM0
@@ -63,6 +64,7 @@ function file_exists_notempty {
         return 0
 	else
 		newevent "Error: $1 not found or not a valid character device!"
+		echo "Error: $1 not found or not a valid character device!"
 		exit 1 	
 	fi
 }
@@ -79,7 +81,7 @@ local MENSAGEMINICIOLOG="
 }
 
 function endlog	{
-	newevent '###############################################################################'
+	newevent '========================================================================FINISH.'
 }
 
 function newevent () {
@@ -90,10 +92,12 @@ function newevent () {
 function errorreport {
 	#PID of atual process chield
 	addJOBID "$$"
-	cat "$DEVICE" > "$LOGERRORFILE"
+	cat "$DEVICE" >> "$LOGERRORFILE"
 }
 
 function sentK {
+
+	newevent "SentK has working, timing is: $TIMEINTERVAL"
 	# While device is connected
 	while test -c "$DEVICE"
 	do
@@ -114,19 +118,23 @@ function __logger	{
 
 	local counter="$(wc -c $LOGERRORFILE | cut -d ' ' -f 1)"	#log file size
 
-	if test "$counter" -nq 0 ;
+	if test "$counter" -eq '0' ;
 	then
-		newevent 'WARNING: log file has not empty'
-	else
 		newevent 'Logger has working!'
+	else
+		newevent 'WARNING: log file has not empty'
 	fi
 
 	#while device is connected
 	while test -c "$DEVICE"
 	do
-		if test "$(wc -c $LOGERRORFILE | cut -d ' ' -f 1)" -gt "$counter" ; 
+		
+		CURRENTCOUNTER="$(wc -c $LOGERRORFILE | cut -d ' ' -f 1)"
+		#[[ ... ]] -> test currentsize -gt initialsize
+		if [[ "$CURRENTCOUNTER" -gt "$counter" ]]; 
 		then
 			newevent "Reading error from device! - at: $(date +%d/%m/%Y-%H:%M:%S)"
+			counter="$CURRENTCOUNTER"
 		fi
 	done
 }
@@ -142,6 +150,7 @@ function ShowDialogLOG	{
 #}
 
 #Setting device input port tty to raw mode
+#Using debug mode
 function setRawTTY {
 	set -x 
 		#Setting the serial port to raw mode
@@ -186,13 +195,15 @@ function __init {
 	#Disable Bash jobs control
 	set +b
 	set +m
+
+	endlog
 }
 
 function __SIGKILL {
-	
+	#Using debug mode
+	set -x
 	local arraysize="${#PJOBSIDS[@]}"
-	newevent "Total jobs running: $arraysize"
-	newevent "PIDs: ${PJOBSIDS[@]}"
+
 	#Kill jobs
 	for ((i=0;i<"$arraysize";i++)) ;
 	do
@@ -201,6 +212,7 @@ function __SIGKILL {
 	done
 
 	killall	"-$SIGINT" "$(basename $0)"
+	set +x
 }
 
 function addJOBID ()	{
@@ -211,8 +223,20 @@ function addJOBID ()	{
 
 }
 
+function clearLOGs {
+
+	echo 'Removing log files'
+	rm "$LOGFILE" "$LOGERRORFILE"
+	if test "$?" -eq 0 ;
+	then
+		echo 'Done'
+	else
+		echo 'Error: You have root permission ?'
+	fi
+}
+
 #Tratamento das opçoes da linha de comando
-while getopts ":hVf:t:" OPCAO
+while getopts ":hVf:t:r" OPCAO
 do
 	case "$OPCAO" in
 		h)	ShowHelp
@@ -221,10 +245,12 @@ do
 		V)	ShowVersion
 			exit 0
 			;;
-		f)	DEVICE="$OPTARG"	
-			echo "File input: $DEVICE"
+		f)	DEVICE="$OPTARG"
 			;;
 		t)	TIMEINTERVAL="$OPTARG"
+			;;
+		r)	clearLOGs
+			exit 0
 			;;
 		\?)	echo "ERROR, Invalid arg to: $OPTARG"	
 			exit 1
@@ -237,6 +263,5 @@ done
 
 __init
 __SIGKILL
-endlog
 exit 0
 ###########################################################################EOF.

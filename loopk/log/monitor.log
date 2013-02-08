@@ -1,12 +1,19 @@
 
-#############################################
-#	Start as 07/02/2013-11:20:13
+###############################################################################
+#	Start as 08/02/2013-09:28:56
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:20:13
-##
+#	Uptime: 08/02/2013-09:28:56
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
+Job listed: 829
+Job listed: 829
+Job listed: 825
+Job listed: 836
+SentK has working, timing is: 1
+K sent to device
+Logger has working!
 K sent to device
 K sent to device
 K sent to device
@@ -17,283 +24,139 @@ K sent to device
 K sent to device
 K sent to device
 K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+========================================================================FINISH.
 
-#############################################
-#	Start as 07/02/2013-11:20:32
+###############################################################################
+#	Start as 08/02/2013-09:29:29
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:20:32
-##
+#	Uptime: 08/02/2013-09:29:29
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
+Job listed: 25509
+Job listed: 25509
+Job listed: 25505
+Job listed: 25515
+SentK has working, timing is: 2
+K sent to device
+Logger has working!
 K sent to device
 K sent to device
 K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-FK sent to device
-FK sent to device
-FK sent to device
-F
-#############################################
-#	Start as 07/02/2013-11:21:23
+========================================================================FINISH.
+
+###############################################################################
+#	Start as 08/02/2013-09:29:37
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:21:23
-##
+#	Uptime: 08/02/2013-09:29:37
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
+Job listed: 31208
+Job listed: 31208
+Job listed: 31204
+Job listed: 31214
+SentK has working, timing is: 3
+K sent to device
+Logger has working!
+Reading error from device! - at: 08/02/2013-09:29:40
 K sent to device
 K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-K sent to device
-FK sent to device
-FK sent to device
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-#############################################
-#	Start as 07/02/2013-11:47:57
+========================================================================FINISH.
+
+###############################################################################
+#	Start as 08/02/2013-09:29:49
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:47:57
-##
+#	Uptime: 08/02/2013-09:29:49
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
+Job listed: 5395
+Job listed: 5395
+Job listed: 5391
+Job listed: 5401
+SentK has working, timing is: 2.9
 K sent to device
+WARNING: log file has not empty
+Reading error from device! - at: 08/02/2013-09:29:52
 K sent to device
 K sent to device
+Reading error from device! - at: 08/02/2013-09:29:57
 K sent to device
+Reading error from device! - at: 08/02/2013-09:30:00
 K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-FFF
-#############################################
-#	Start as 07/02/2013-11:50:34
+========================================================================FINISH.
+
+###############################################################################
+#	Start as 08/02/2013-09:30:05
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:50:34
-##
+#	Uptime: 08/02/2013-09:30:05
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
-Job listed
-Job listed
+Job listed: 16220
+Job listed: 16220
+Job listed: 16216
+Job listed: 16226
+SentK has working, timing is: 2.69
+K sent to device
+WARNING: log file has not empty
 K sent to device
 K sent to device
 K sent to device
 K sent to device
 K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-K sent to device
-FFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-#############################################
-#	Start as 07/02/2013-11:52:21
+========================================================================FINISH.
+
+###############################################################################
+#	Start as 08/02/2013-09:30:37
 #	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:52:21
-##
+#	Uptime: 08/02/2013-09:30:37
+###############################################################################
 
 Device /dev/ttyACM0 found!
 Device /dev/ttyACM0 setted to raw mode
-Job listed: $1
-Job listed: $1
+Job listed: 29044
+Job listed: 29044
+Job listed: 29040
+Job listed: 29050
+SentK has working, timing is: 2.5
 K sent to device
-K sent to device
-K sent to device
-FFFFF
-#############################################
-#	Start as 07/02/2013-11:52:40
-#	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:52:40
-##
-
-Device /dev/ttyACM0 found!
-Device /dev/ttyACM0 setted to raw mode
-Job listed: 
-Job listed: 5780
+WARNING: log file has not empty
 K sent to device
 K sent to device
 K sent to device
 K sent to device
-FFFFFFFFFFFFFFFFFFF
-#############################################
-#	Start as 07/02/2013-11:53:40
-#	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:53:40
-##
-
-Device /dev/ttyACM0 found!
-Device /dev/ttyACM0 setted to raw mode
-Job listed: 
-Job listed: 
-Job listed: 5793
 K sent to device
 K sent to device
-
-#############################################
-#	Start as 07/02/2013-11:53:44
-#	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:53:44
-##
-
-Device /dev/ttyACM0 found!
-Device /dev/ttyACM0 setted to raw mode
-Job listed: 
-Job listed: 
-Job listed: 5804
-K sent to device
-FFFFFFFFFFFFFFFFFFFFFFFF
-#############################################
-#	Start as 07/02/2013-11:54:52
-#	Device: /dev/ttyACM0
-#	Uptime: 07/02/2013-11:54:52
-##
-
-Device /dev/ttyACM0 found!
-Device /dev/ttyACM0 setted to raw mode
-Job listed: 
-Job listed: 5818
 K sent to device
 K sent to device
-FFFFFFFFFFFFFFFF
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+K sent to device
+========================================================================FINISH.
