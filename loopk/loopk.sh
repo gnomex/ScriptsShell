@@ -26,6 +26,9 @@ LOGFILE="$LOGDIR/monitor.log"
 LOGERRORFILE="$LOGDIR/logger.log"
 TIMEINTERVAL=2 	#Default value
 UPTIMESCRIPT="$(date +%d/%m/%Y-%H:%M:%S)"
+CHARECHO="K"	#signal to send
+CHARERRO="F"	#error to receive
+CHARFORECHO="P"	#signal received
 
 SIGINT=15	#Default value
 
@@ -33,8 +36,9 @@ SIGINT=15	#Default value
 
 function ShowHelp	{
 	local HELPMESSAGE="
-	USO: $(basename "$0") [-h | -V | -f <file>	| -r ]
+	USO: $(basename "$0") [ -c <char>	|-h | -V | -f <file>	| -r ]
 
+	-c <input char>
 	-h	Show help
 	-V	Show Version
 	-f <file>	Input file
@@ -102,7 +106,7 @@ function sentK {
 	while test -c "$DEVICE"
 	do
 		#write k on tty
-		echo 'K' > "$DEVICE"
+		echo "$CHARECHO" > "$DEVICE"
 		if test "$?" -eq 0 ;
 			then
 				newevent "K sent to device"
@@ -133,10 +137,23 @@ function __logger	{
 		#[[ ... ]] -> test currentsize -gt initialsize
 		if [[ "$CURRENTCOUNTER" -gt "$counter" ]]; 
 		then
-			newevent "Reading error from device! - at: $(date +%d/%m/%Y-%H:%M:%S)"
+			
+			__checksEvent `tail -n 1 "$LOGERRORFILE" | rev | cut -c 1`
+
 			counter="$CURRENTCOUNTER"
 		fi
 	done
+}
+
+function __checksEvent ()	{
+
+	if test "$1" = "$CHARERRO" ;
+	then
+		newevent "Reading $CHARERRO from device! - at: $(date +%d/%m/%Y-%H:%M:%S)"
+	elif test "$1" = "$CHARFORECHO" ;
+	then
+		newevent "Reading $CHARFORECHO from device - at: $(date +%d/%m/%Y-%H:%M:%S)"
+	fi
 }
 
 #Mostra graficamente o log
@@ -236,7 +253,7 @@ function clearLOGs {
 }
 
 #Tratamento das opçoes da linha de comando
-while getopts ":hVf:t:r" OPCAO
+while getopts ":hVf:t:rc:" OPCAO
 do
 	case "$OPCAO" in
 		h)	ShowHelp
@@ -251,6 +268,8 @@ do
 			;;
 		r)	clearLOGs
 			exit 0
+			;;
+		c)	CHARECHO="$OPTARG"
 			;;
 		\?)	echo "ERROR, Invalid arg to: $OPTARG"	
 			exit 1
