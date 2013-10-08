@@ -1,0 +1,10 @@
+#!/bin/bash
+# Programa para testar passagem de parametros (3a. Versao)
+echo O programa $(basename $0) recebeu $# parametros
+echo "11o. parm (errado)-> $11"
+echo "10o. parm (certo) ${10}"
+echo "11o. parm (certo) ${11}"
+shift
+echo "2o. parm -> $1"
+shift 2
+echo "4o. Parm -> $1"

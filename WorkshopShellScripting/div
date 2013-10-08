@@ -1,0 +1,16 @@
+    if  [ $# -ne 3 ]
+    then
+	echo "$0: Sintaxe: $0 <Dividendo> <Divisor> <Qtd. Decimais na Saida>"
+	exit 1
+    fi
+    Divid=$1
+    Divis=$2
+    Decim=$3
+    Resp=`expr $Divid / $Divis`,
+    while [ "$Decim" -gt 0 ]
+    do
+        Divid=`expr $Divid % $Divis \* 10`
+        Resp=$Resp`expr $Divid / $Divis`
+        Decim=`expr $Decim - 1`
+    done
+    echo $Resp

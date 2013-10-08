@@ -1,0 +1,40 @@
+#!/bin/bash
+#
+#  Capitulo 6 exercicio 1
+#
+
+if  [ $# -ne 1 ]        #  Recebi 1 parametro?
+then
+    echo "Uso: $0 <Nome do Arquivo com conteudo do e-mail>"
+    exit 1
+fi
+
+#  Serah que o arquivo existe?
+
+if  ls $1 > /dev/null 2>&1
+then
+    cat ArqOLs |
+    while read lixo Maquina Opers
+    do
+        echo 'mail '`echo $Opers | cut -f1 -d" "`"@$Maquina < $1"
+    done
+else
+    echo $1 nao existe neste diretorio
+    exit 2
+fi
+
+###  O ultimo if e seu conteudo poderia (e deveria) ser escrito assim:  ###
+#
+#    if  [ -f "$1" ]
+#    then
+#        cat ArqOLs |
+#        while read lixo Maquina Oper lixo
+#        do
+#            echo "mail $Oper@$Maquina < $1"
+#        done
+#    else
+#        echo $1 nao existe neste diretorio
+#        exit 2
+#    fi
+#
+###########################################################################

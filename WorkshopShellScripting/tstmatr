@@ -1,0 +1,27 @@
+while true 
+do
+    clear
+    tput cup 10 15
+    echo "Entre com sua matricula: \c"
+    read Matric
+    if  [ ! "$Matric" ]
+    then
+        tput cup 12 15
+        echo "Deseja abandonar? (N/s) \c"
+        read sn
+        if  [ "$sn" = S -o "(" "$sn" = s ")" ]
+        then
+            exit
+        fi
+        continue
+    fi
+    if  expr $Matric + 1 1> /dev/null 2>&1
+    then
+	break
+    else
+        tput cup 12 15
+        echo "Matricula Nao Numerica"
+        read a
+        continue
+    fi
+done

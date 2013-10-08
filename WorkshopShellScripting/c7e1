@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+#  Capitulo 7 exercicio 1
+#
+
+if  [ $# -lt 1 ]        #  Recebi pelo menos 1 parametro?
+then
+    echo "Uso: $0 <Nomes dos Arquivos a Deletar>.
+       Obs. Vale metacaracteres como arqs*"
+    exit 1
+fi
+
+if  [ ! "$MAXFILES" ]
+then
+    MAXFILES=10
+fi
+
+Qtd=`ls $* 2> /dev/null | wc -l`
+if  [ "$Qtd" -eq 0 ]
+then
+    echo Nao ha arquivos a serem deletados
+    exit 2
+fi
+if  [ "$Qtd" -le "$MAXFILES" ]
+then
+    echo "Deveria fazer rm `echo $*`"
+    exit
+fi
+
+if  [ "$Qtd" -gt 1 ]
+then
+    echo "Existem $Qtd Arquivos a deletar... \c"
+else
+    echo "So existe 1 arquivo a deletar...\c"
+fi
+echo " Posso remover? (S/n) \c"
+read sn
+if  [ "$sn" != n ]
+then
+    echo "Deveria fazer rm -f `echo $*`"
+    exit
+fi

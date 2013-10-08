@@ -1,0 +1,8 @@
+tput cup 3 6
+echo ".<-"
+tput cup 2 10
+echo "/"
+tput cup 1 12
+echo "/"
+tput cup 0 14
+echo "_________ Este eh o ponto (3, 6)"

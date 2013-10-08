@@ -1,0 +1,10 @@
+clear
+if  Matric=`lematric`
+then
+   :
+else
+   exit
+fi
+echo "A Matricula informada foi $Matric"
+# . . . Le os outros dados do empregado
+

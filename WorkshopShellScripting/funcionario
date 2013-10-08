@@ -1,0 +1,13 @@
+#
+#  Le Dados dos Funcionarios
+#
+clear
+if  Matric=`lematric`
+then
+   :	   ##  O dois-pontos (:) e' o Comando Nulo
+else
+   exit
+fi
+echo "A Matricula informada foi $Matric"
+# . . . Le os outros dados do empregado
+

@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Restaura arquivos deletados vi erreeme
+#
+
+if [ $# -eq 0 ]
+then
+    echo "Uso: $0 <Nome do Arquivo a Ser Restaurado>"
+    exit 1
+fi
+
+Dir=`tail -1 /tmp/$LOGNAME/$1`
+grep -v $Dir /tmp/$LOGNAME/$1 > $Dir/$1
+rm /tmp/$LOGNAME/$1
+

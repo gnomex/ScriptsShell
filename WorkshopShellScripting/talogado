@@ -1,0 +1,10 @@
+#
+#  Verifica se determinado usuario esta "logado" - versao 2
+#
+
+if  who | grep $1 > /dev/null
+then
+    echo $1 esta logado
+else
+    echo $1 nao esta logado
+fi

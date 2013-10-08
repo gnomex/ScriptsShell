@@ -1,0 +1,58 @@
+#!/usr/bin/bash
+#
+#  Este programa foi chamado pelo c7e2 para coletar os dados necessarios.
+#  As rotinas de exclusao e alteracao ainda nao foram implementadas.
+#
+#  Repare que os blocos de programa situados entre chaves, redirecionam aa 
+#  saida para /dev/tty, que eh a saida no terminal corrente, isto eh, o
+#  terminal que voce estah usando.
+#
+
+{
+clear
+echo "
+     +-----------------------------------------------------+
+     |                                                     |
+     |          Programas de Manutencao de ArqOLs          |
+     |                                                     |
+     +-----------------------------------------------------+"
+
+tput cup 8 22
+echo "Dados para \c"
+} > /dev/tty
+case $Opc in
+    1)  {
+	echo Inclusao
+	tput cup 11 22
+	echo "Numero da OL: \c"
+	read OL
+	tput cup 13 22
+        echo "Nome da Maquina: \c"
+	read Maq
+	i=0
+	while [ $i -le 7 ]
+	do
+	    Lin=`expr 15 + $i / 2 \* 2`
+            Col=`expr 22 + $i % 2 \* 30`
+	    i=`expr $i + 1`
+	    tput cup $Lin $Col
+            echo "Operador$i: \c"
+	    read Oper
+	    if  [ ! "$Oper" ]
+	    then
+		break
+            fi
+	    Opers=$Opers$Oper" "
+        done
+	} > /dev/tty
+	echo "$OL	$Maq	$Opers"
+	exit
+        ;;
+    2)  echo "rotina nao implementeda" > /dev/tty
+	exit
+        ;;
+    3)  echo "rotina nao implementeda" > /dev/tty
+	exit
+        ;;
+esac
+

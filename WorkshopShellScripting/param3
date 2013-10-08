@@ -1,0 +1,4 @@
+echo O programa $0 Recebeu $# Parametros
+echo $1
+echo $2
+echo ${11}

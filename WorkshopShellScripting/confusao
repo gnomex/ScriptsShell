@@ -1,0 +1,2 @@
+cd $HOME;pwd;date;ls -la;echo $LOGNAME x${SHELL}x
+

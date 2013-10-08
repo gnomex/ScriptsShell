@@ -1,0 +1,36 @@
+#
+#  Lista o conteudo do arquivo de telefones
+#
+
+ContaLinha=0
+clear
+echo "
+            Nome               Telefone
+"
+cat telefones |
+while read Linha
+do
+    if  [ $ContaLinha -ge 21 ]
+    then
+        tput cup 24 28
+        echo "Tecle <ENTER> para prosseguir ou X para terminar...\c"
+        read a < /dev/tty
+        if  [ "$a" = X ]
+        then
+            exit
+        fi
+        clear
+        echo "
+            Nome               Telefone
+"
+        ContaLinha=0
+    fi
+    echo "            $Linha"
+    ContaLinha=`expr $ContaLinha + 1`
+done
+tput cup 24 49
+echo "Tecle <ENTER> para terminar...\c"
+read a
+clear
+exit
+

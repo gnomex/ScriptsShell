@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#
+#  capitulo 8 - exercicio 2
+#  Este exercicio soh estara correto com, no maximo, 9 parametros
+#
+
+NumArgs=$#
+if  [ "$NumArgs" -lt 2 ]
+then
+    echo Nao ha parametros suficientes.
+    exit 1
+fi
+
+while [ "$NumArgs" -gt 0 ]
+do
+    eval echo \$$NumArgs
+    NumArgs=`expr $NumArgs - 1`
+done

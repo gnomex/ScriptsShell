@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+#  Capitulo 5 exercicio 1
+#
+
+if  [ $# -ne 2 ]        #  Recebi 2 parametros?
+then
+    echo "Uso: $0 <No. OL ou nome do site> <Nome do Arquivo de mail>"
+    exit 1
+fi
+
+#  Vou testar se o $1 eh numerico (No. OL) ou nao (Nome da maquina)
+#  Sera que exite a OL ou Maquina informada?
+
+if  expr $1 + 1 > /dev/null 2>/dev/null
+then
+    Reg=`grep "^$1" ArqOLs`          #  Estou pesquisando No. OL no inicio do registro
+    if  [ ! "$Reg" ]
+    then
+        echo Nao conheco OL=$1
+        exit 2
+    fi
+    Maquina=`echo "$Reg" | cut -f2`  #  $Reg tem que estar entre aspas para nao perder as <tab>
+else
+    Reg=`grep "	$1	" ArqOLs`    #  Estou pesquisando <tab><maquina><tab> em ArqOLs
+    if  [ ! "$Reg" ]
+    then
+        echo Nao conheco Site=$1
+        exit 3
+    fi
+    Maquina=$1
+fi
+Opers=`echo "$Reg" | cut -f3`
+
+#  E o arquivo?  Serah que ele existe?
+
+if  ls $2 1> /dev/null 2> /dev/null
+then
+    for Oper in $Opers
+    do
+        echo "$Oper@$Maquina < $2"
+    done
+    exit
+fi
+
+echo $2 nao existe neste diretorio
+exit 4

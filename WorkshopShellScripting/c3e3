@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#
+#  Capitulo 3 exercicio 3
+#
+
+Data=`date "+%b %e"`
+who | grep -v "$Data"

@@ -1,0 +1,2 @@
+echo O Programa $0 Recebeu $# Parametros Listados Abaixo:
+echo $*

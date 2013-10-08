@@ -1,0 +1,56 @@
+#
+#  Salvando Copia de Arquivo Antes de Remove-lo
+#
+
+if  [ $# -eq 0 ]
+then
+    echo "Erro -> Uso: $0 arq [arq] ... [arq]"
+    echo "        O uso de metacaracteres eh permitido. Ex. erreeme arq*"
+    exit 1
+fi
+
+MeuDir="/tmp/$LOGNAME"
+if  [ ! -d $MeuDir ]
+then
+    mkdir $MeuDir
+fi
+
+if  [ ! -w $MeuDir ]
+then
+    echo Impossivel salvar arquivos em $MeuDir. Mude permissao e tente novamente...
+    exit 2
+fi
+
+Erro=0
+for Arq
+do
+    if  [ ! -f $Arq ]
+    then
+        echo $Arq nao existe.
+        Erro=3
+        continue
+    fi
+    
+    DirOrig=`dirname $Arq`
+    if  [ ! -w $DirOrig ]
+    then
+        echo Sem permissao de remover no diretorio de $Arq
+        Erro=4
+        continue
+    fi
+
+    if  [ "$DirOrig" = "$MeuDir" ]
+    then
+	echo $Arq ficara sem copia de seguranca
+        rm -i $Arq
+        [ -f $Arq ] || echo $Arq removido
+        continue
+    fi
+    
+    cd $DirOrig
+    pwd >> $Arq
+    mv $Arq $MeuDir
+    echo $Arq removido
+done
+exit $Erro
+

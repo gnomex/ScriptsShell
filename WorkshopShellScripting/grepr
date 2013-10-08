@@ -1,0 +1,7 @@
+#
+#                            Grep recursivo
+#   Pesquisa a cadeia de caracteres definida em $2 a partir do diretorio $1
+#
+
+find $1 -type f -print | xargs grep -l "$2"    # -type f = arquivos normais
+

@@ -1,0 +1,21 @@
+Flg=
+for i
+do
+   case $i in
+   -c)   Flg=N
+	 ;;
+    *)   if  [ -f $i ]
+         then
+             ln $i lixo$$
+	     ls -l lixo$$
+             rm lixo$$
+         elif [ $Flg ]             # Verdadeiro se nao nulo
+         then
+             echo \'$i\' nao existe
+         else
+             >$i                   # Cria o arquivo passado com tamanho = zero
+         fi
+	 ;;
+   esac
+done
+

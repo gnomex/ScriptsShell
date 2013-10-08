@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#
+#  Capitulo 4 exercicio 3
+#
+
+Hora=`date +%H`
+case $Hora in
+    0? | 1[01]) echo Bom Dia
+                ;;
+    1[2-7]    ) echo Boa Tarde
+                ;;
+    *         ) echo Boa Noite
+                ;;
+esac
+exit

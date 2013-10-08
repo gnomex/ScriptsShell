@@ -1,0 +1,113 @@
+#!/bin/bash
+#
+# Exercicio 6.2
+#
+#
+
+clear
+                                
+echo "
+
+		TRANSMISSAO DE ARQUIVOS 
+		=======================
+
+		1 - Maquina ... 
+
+		2 - Login .....
+
+		3 - Senha .....
+
+		4 - Arquivos a serem transmitidos 
+
+
+
+		Informe os dados acima ... "
+
+
+while true
+do
+    tput cup 5 32 
+    echo "                                    "
+    tput cup 5 32 
+    read maq
+                   # A maquina existe no /etc/hosts ???
+    if  [ "$maq" -a \( `fgrep -c "	$maq	" /etc/hosts` -eq 1 \) ]
+    then
+	break
+    else
+        tput cup 21 25
+	echo "Maquina nao definida no arquivo de hosts\007" # \007 dah BEEP
+	read  #  Soh para esperar ateh teclar <ENTER>
+        tput cup 21 25
+	echo "                                        "  # Limpei a linha
+	continue
+    fi
+done
+tput cup 7 32
+read acesso
+tput cup 9 32
+stty -echo        # Inibindo o eco do teclado
+read senha
+stty echo
+
+Arquivos=
+while true
+do
+  tput cup 13 21 
+  read Arquivo
+
+  if [ ! "$Arquivo" ] 
+  then
+     tput cup 17 16
+     echo "Finaliza entrada de arquivos (s/n) \c"
+     read Sair
+     tput cup 17 16
+     echo "                                    "
+     if [ `echo "$Sair" | tr S s` = s ]
+     then
+	break
+     else
+       continue
+     fi
+  fi
+
+  if ls $Arquivo > /dev/null 2>&1 
+  then
+     Arquivos="$Arquivos `echo $Arquivo`"   
+     tput bold
+     tput cup 21 01
+     echo $Arquivos
+     tput sgr0
+  else
+     tput cup 17 16
+     echo "Arquivo nao existe..."
+     read
+     tput cup 17 16
+     echo "                     "
+  fi
+
+  tput cup 13 21 
+  echo "                                         "
+done
+
+
+for trans in $Arquivos
+do
+  tput cup 19 16
+  echo "                                               "
+  tput cup 19 16
+  tput smso
+  echo "Transmitindo $trans ... "
+  ftp -ivn "$maq" << fimftp  >> /tmp/$$
+     user "$acesso" "$senha"
+     bin
+     put "$trans"
+     bye
+fimftp
+done
+ 
+tput cup 23 16
+echo "Fim de Transmissao .... Tecle <ENTER>  "
+read
+tput sgr0
+clear

@@ -1,0 +1,38 @@
+#
+#  Testa qual o tipo de um caracter recebido por parametro
+#
+
+#####  Teste da Quantidade de Parametros  #####
+erro=0
+if  [ "$#" -ne 1 ]
+then
+    echo "Uso: $(basename $0) caractere"
+    erro=1
+fi
+
+#####  Testa se o 1o. parametro tem o tamanho de um caracter  #####
+case $1 in
+    ?)  ;;
+    *)  echo "Erro -> Parametro passado deveria ter um caracter"
+        erro=2
+        ;;
+esac
+
+#####  Se houve erro o programa termina, passando o codigo do erro  #####
+if  [ "$erro" -ne 0 ]
+then
+    exit $erro
+fi
+
+case $1 in
+[a-z])  echo Letra Minuscula
+        ;;
+[A-Z])  echo Letra Maiuscula
+        ;;
+[0-9])  echo Numero
+        ;;
+    *)  echo Caracter Especial
+        ;;
+esac
+exit 0
+

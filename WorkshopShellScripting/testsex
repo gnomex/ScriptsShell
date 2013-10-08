@@ -1,0 +1,26 @@
+clear
+sexo=$1
+if  [ "$sexo" -lt 1 -o "(" "$sexo" -gt 2 ")" ]
+then
+    tput cup 21 20
+    tput smso
+    echo "Nao sabia que eramos colegas, meu bem!!"
+    sleep 5
+    tput rmso
+    tput reset
+    exit 1
+fi
+
+tput bold
+tput cup 10 35
+if  [ "$sexo" -eq 1 ]
+then
+    echo sexo masculino
+else
+    echo sexo feminino
+fi
+
+sleep 5
+tput rmso
+tput reset
+exit

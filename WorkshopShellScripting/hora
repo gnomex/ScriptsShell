@@ -1,0 +1,11 @@
+Hora=`date | cut -f4 -d" " | cut -f1 -d:`
+Resto=`date | cut -f4 -d" " | cut -f2- -d:`
+if  [ "$Hora" -gt 12 ]
+then
+    Hora=`expr $Hora - 12`
+    Resto=$Resto" PM"
+else
+    Resto=$Resto" AM"
+fi
+echo $Hora:$Resto
+exit

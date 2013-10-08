@@ -1,0 +1,8 @@
+bin:x:2:2:bin:/bin:/bin/sh
+pulse:x:109:114:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+rtkit:x:110:117:RealtimeKit,,,:/proc:/bin/false
+saned:x:111:118::/home/saned:/bin/false
+hplip:x:112:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+gdm:x:113:120:Gnome Display Manager:/var/lib/gdm:/bin/false
+julio:x:1000:1000:Julio Neves,,,:/home/julio:/bin/bash
+postfix:x:114:123::/var/spool/postfix:/bin/false

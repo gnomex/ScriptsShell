@@ -1,0 +1,12 @@
+#!/bin/bash
+
+hh=`date "+%H"`      #  Horas em hh
+mm=`date "+%M"`      #  Minutos em mm
+ap=am                #  am ou pm em ap
+if  [ "$hh" -gt 12 ]
+then
+    hh=`expr $hh - 12`
+    ap=pm
+fi
+echo $hh:$mm $ap
+exit

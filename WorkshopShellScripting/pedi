@@ -1,0 +1,19 @@
+#
+#  Testa a resposta a um pedido. Deve ser (S)im ou (N)ao - Versao 3
+#
+
+if  test $# = 0
+then
+    echo Faltou informar a resposta
+    exit 1
+fi
+resp=$1
+if  test "$resp" = N
+then
+    echo Ela nao deixa...
+elif  test "$resp" = S
+then
+    echo Oba, ela deixou!!!
+else
+    echo Acho que ela esta na duvida.
+fi

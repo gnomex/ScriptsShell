@@ -1,0 +1,6 @@
+echo a=$a:
+a=xx
+echo a=$a:
+b=`variando1`
+echo b=$b
+

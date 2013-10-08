@@ -1,0 +1,42 @@
+#! /bin/bash
+
+#
+#  Capitulo 8 - Exercicio 1
+#
+
+Erro ()    # # # Este nome eh porque a funcao pode ser usada para erros de critica
+{
+    if  [ "$#" -lt 2 -o \( "$#" -gt 3 \) ]
+    then
+        echo "Uso: $0 <Mensagem> <No. Linha> [ <No. Coluna> ]"
+        exit 1
+    fi
+
+    if  [ "$#" -eq 3 ]
+    then 
+        C=$3
+    else
+        Len=`expr length "$1"`
+        C=`expr "(" 80 - "$Len" ")" / 2`
+    fi
+    tput cup $2 $C
+    echo "$1\07\c"
+    read a < /dev/tty
+    tput cup $2 $C
+    echo "                                                                              "
+    return
+}
+
+#  Inicio do bacalho
+
+clear
+if  [ "$#" -ge 2 -a \( "$#" -le 3 \) ]
+then
+    Mens=$1
+    shift 1
+    Erro "$Mens" $*  ##  Se $Mens nao estiver entre aspas, dara zebra. Porque??
+else
+    Erro "Estou passando a mensagem, a linha e a coluna" 21 20
+    Erro "Estou passando a mensagem e a linha sem a coluna" 21
+    Erro "Estou passando soh a mensagem"
+fi

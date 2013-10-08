@@ -1,0 +1,5 @@
+#
+#    Pesquisa Pessoa no Catalogo Telefonico - versao 2
+#
+
+grep "$1" telefones

@@ -1,0 +1,12 @@
+#
+#  medieval - Modulo-Exemplo Da Instrucao EVAL
+#
+
+echo $# argumentos.
+i=1
+while [ "$i" -le $# ]
+do
+    echo "parametro $i = \c"
+    eval echo \$$i
+    i=`expr $i + 1`
+done

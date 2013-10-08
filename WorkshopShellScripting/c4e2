@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if  [ "$#" -ne 2 ]            #   Recebi 2 parametros?
+then
+    echo "uso: $0 <comandos do sed> <arquivo a ser editado>"
+    exit 1
+fi
+
+if  ls $2 1>/dev/null 2>&1    #   O mesmo que: __ [ -_ "$_" ] Complete os _
+then
+    if  sed $1 $2 >/tmp/$$ 2>/dev/null   #   Testa o status da execucao do sed
+    then
+        echo sed bem sucedido
+	mv /tmp/$$ $2
+	exit
+    else
+        echo Houve erro na passagem de parametros para o sed.
+        rm /tmp/$$ 2>/dev/null
+	exit 2
+    fi
+else
+    echo Arquivo $2 nao existe
+    exit 3
+fi

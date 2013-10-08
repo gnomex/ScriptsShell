@@ -1,0 +1,88 @@
+#!/usr/bin/bash
+#
+#  Este programa chama o programa c7e2.1 que coletara os dados necessarios,
+#  devolvendo-os aa este, que procederah aa inclusao, exclusao ou alteracao
+#  necessaria.
+#
+
+export Opc=0
+while [ "$Opc" -lt 1 -o $Opc -gt 4 ]
+do
+    clear
+    echo "
+     +-----------------------------------------------------+
+     |                                                     |
+     |          Programas de Manutencao de ArqOLs          |
+     |                                                     |
+     +-----------------------------------------------------+
+
+	    OPCAO	ACAO
+	    =====	====
+
+	      1		Inclui OL em ArqOLs
+	      2		Exclui OL de ArqOLs
+	      3		Altera OL em ArqOLs
+	      4		Termina
+
+            Entre Com a Opcao Desejada: \c"
+    read Opc
+done
+if  [ $Opc -eq 4 ]
+then
+    exit
+fi
+
+Reg=`c7e2.1`
+echo "\n\n           OL a ser \c"
+case $Opc
+   in
+   1) echo "incluida\c"
+      ;;
+   2) echo "excluida\c"
+      ;;
+   *) echo "alterada\c"
+      ;;
+esac
+echo ": ==> $Reg \n
+	                          Confirma? (S/n) \c"
+read sn
+if  [ "$sn" = n -o "$sn" = N ]
+then
+    exit
+fi
+OLinf=`echo "$Reg" | cut -f1`
+case $Opc in
+    1)  if  grep "^$OLinf" ArqOLs > /dev/null
+	then
+	    echo "\n\nJah existe registro referente aa OL $OLinf"
+	    read
+	    exit 1
+        fi
+	echo "$Reg"  >> ArqOLs
+	sort ArqOLs > /tmp/ArqOLs$$
+	mv -f /tmp/ArqOLs$$ ArqOLs
+	;;
+    2)  if  grep "^$OLinf" ArqOLs > /dev/null
+	then
+	    grep -v "^$OLinf" ArqOLs > /tmp/ArqOLs$$
+	    mv -f /tmp/ArqOLs$$ ArqOLs
+        else
+	    echo "\n\nNao existe registro referente aa OL $OLinf"
+	    read
+	    exit 2
+        fi
+	;;
+    3)  if  grep "^$OLinf" ArqOLs > /dev/null
+	then
+	    grep -v "^$OLinf" ArqOLs > /tmp/ArqOLs$$
+	    mv -f /tmp/ArqOLs$$ ArqOLs
+	    echo "$Reg"  >> ArqOLs
+            sort ArqOLs > /tmp/ArqOLs$$
+	    mv /tmp/ArqOLs$$ ArqOLs
+        else
+	    echo "\n\nNao existe registro referente aa OL $OLinf"
+	    read
+	    exit 2
+        fi
+	;;
+esac

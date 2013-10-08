@@ -1,0 +1,26 @@
+#
+#  vira - vi resguardando arquivo anterior
+#         == =            =
+
+if  [ "$#" -ne 1 ]
+then
+    echo "Erro -> Uso: $(basename $0) <arquivo>"
+    exit 1
+fi
+
+Arq=$1
+if  [ ! -f "$Arq" ]
+then
+    vi $Arq
+    exit 0
+fi
+
+if  [ ! -w "$Arq" ]
+then
+    echo "Voce nao tem direito de gravacao em $Arq"
+    exit 2
+fi
+
+cp -f $Arq $Arq~
+vi $Arq
+exit 0

@@ -1,0 +1,2 @@
+echo -n "$1 esta logado desde "
+who | grep $1 | cut -c25-

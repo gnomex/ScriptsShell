@@ -1,0 +1,17 @@
+awk 'BEGIN { MinCons=99999 }
+    {
+    if  ( $2 > MaxVel )
+        {
+        CarVel=$1
+        MaxVel=$2
+        }
+    if  ( $4 < MinCons )
+        {
+        CarEcon=$1
+        MinCons=$4
+        }
+    }
+    END {
+        print "O",CarVel,"desenvolve",MaxVel,\
+        "km e\nO",CarEcon,"faz",MinCons,"km/l\n"
+        }' carros

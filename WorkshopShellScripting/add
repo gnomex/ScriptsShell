@@ -1,0 +1,7 @@
+#
+# Adiciona Pessoas ao Arquivo de Telefones - Versao 2
+#
+
+echo "$1	$2" >> telefones
+sort -o telefones telefones
+

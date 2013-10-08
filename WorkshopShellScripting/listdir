@@ -1,0 +1,2 @@
+echo Os Arquivos do Diretorio Corrente Sao:
+ls -l

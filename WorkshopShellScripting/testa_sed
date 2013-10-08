@@ -1,0 +1,10 @@
+1      # Esta linha nao serah analisada
+#  A partir daqui, existem linhas vazias
+#+ linhas somente com espacos em branco
+#+ e linhas com <TABs>
+
+2      # Esta eh uma linha que deve ser mantida
+      
+3      # Esta tb deve ser mantida
+	   # Isto eh um <TAB>
+4      # Essa tb serah mantida

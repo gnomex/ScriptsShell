@@ -1,0 +1,5 @@
+/^postfix:/d
+/^hplip:/d
+/^gdm:/d
+/^bin:/d
+/^pulse:/d

@@ -1,0 +1,29 @@
+#
+#  Rotina de leitura e critica de matricula
+#
+while true
+do
+    tput cup 10 20
+    echo "Digite a Matricula:"
+    tput cup 10 40
+    read Matric
+    if  [ ! "$Matric" ]
+    then
+        tput cup 21 35
+        echo "Deseja Abandonar? (S/n)"
+        tput cup 21 59
+        read SN
+        if  [ "`echo "$SN" | tr n N`" = N ]  # Se digitou n ou N virara' N
+        then
+            tput cup 21 35
+            echo "                             "  # Apagando a pergunta
+            continue
+        fi
+        exit 1        #   Abandonou o programa entao codigo de retorno = 1
+    fi
+    # . . . Rotina de verificacao de DV e Critica . . .
+    break
+done > /dev/tty    #   A saida de todo o loop sera' na tela
+echo $Matric
+exit 0
+

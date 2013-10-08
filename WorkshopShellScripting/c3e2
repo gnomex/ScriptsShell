@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#
+#  Capitulo 3 exercicio 2
+#
+
+fgrep "("$1")" telefones
